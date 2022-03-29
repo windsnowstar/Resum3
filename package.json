@@ -1,0 +1,61 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "apollo-boost": "^0.4.9",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-link-http": "^1.5.17",
+    "bip39": "^3.0.4",
+    "chia-client": "^11.0.0",
+    "cross-fetch": "^3.1.5",
+    "crypto-js": "^4.1.1",
+    "egg": "^2.15.1",
+    "egg-scripts": "^2.11.0",
+    "egg-view-nunjucks": "^2.3.0",
+    "ethereumjs-util": "^7.1.4",
+    "ethereumjs-wallet": "^1.0.2",
+    "graphql": "^14.7.0",
+    "graphql-tag": "^2.12.6",
+    "js-conflux-sdk": "^2.0.2",
+    "react-apollo": "^3.1.5"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-mock": "^3.21.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --env=prod --daemon --title=egg-server-example --ignore-stderr",
+    "stop": "egg-scripts stop --title=egg-server-example",
+    "dev": "egg-bin dev  --ignore-stderr",
+    "prod": "NODE_ENV=prod egg-bin dev  --ignore-stderr",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "10"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "MIT"
+}

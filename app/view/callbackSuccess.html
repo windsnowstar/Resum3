@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Web3 Resume">
+  <title>Resum3</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.0.32/dist/ethers.umd.min.js"></script>
+
+  <script>
+    $(function () {
+      init();
+    });
+
+
+
+    function init() {
+      console.log('init vue...');
+      let userName = `{{login}}`;
+      let followers = `{{followers}}`;
+      let following = `{{following}}`;
+      let avatarUrl = `{{avatar_url}}`;
+      let publicRepos = `{{public_repos}}`;
+      let publicGists = `{{public_gists}}`;
+      let htmlUrl = `{{html_url}}`;
+      let authorized = false;
+
+      if (userName) {
+        authorized = true;
+        localStorage.setItem("_user.userName", userName);
+        localStorage.setItem("_user.followers", followers);
+        localStorage.setItem("_user.following", following);
+        localStorage.setItem("_user.avatarUrl", avatarUrl);
+        localStorage.setItem("_user.publicRepos", publicRepos);
+        localStorage.setItem("_user.publicGists", publicRepos);
+        localStorage.setItem("_user.htmlUrl", htmlUrl);
+      }
+
+    }
+  </script>
+</head>
+
+<body> 
+  <!-- Loading Modal -->
+  <div id="loadingModal" class="modal fade" role="dialog" aria-hidden="true" aria-labelledby="loadingLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header align-items-center d-flex">
+          <h4 class="modal-title x-title" id="loadingLabel">&nbsp;</h4>
+        </div>
+        <div class="modal-body">
+          <div class="float-start">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div class="ms-5 ps-4 float-none">
+            <p class="x-message">&nbsp;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center" style="height: 500px">
+      <div class="col">
+      </div>
+      <div class="col">
+        <p></p>
+        <h2><i class="bi-github" width="32" height="32" role="img" aria-label="GitHub"></i> &nbsp; Github authorize success</h2>
+        <p></p>
+        <button class="btn btn-primary btn-lg btn-block" style="width:410px;"><a style="color:white;text-decoration:none; " href="/index">Go to Resum3 home page</a></button>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

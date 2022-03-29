@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Web3 Resume">
+
+  <title>Resum3</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.0.32/dist/ethers.umd.min.js"></script>
+
+  <script src="/public/scripts/common.js"></script>
+  <script src="/public/scripts/profile.js"></script>
+  <script src="/public/scripts/contracts.js"></script>
+
+  <script>
+    $(function () {
+      init();
+      $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+      })
+
+    });
+
+    function init() {
+      console.log('init vue...');
+      let userName = `{{login}}`;
+      let followers = `{{followers}}`;
+      let following = `{{following}}`;
+      let avatarUrl = `{{avatar_url}}`;
+      let publicRepos = `{{public_repos}}`;
+      let publicGists = `{{public_gists}}`;
+      let htmlUrl = `{{html_url}}`;
+      let authorized = false;
+
+      if (userName) {
+        authorized = true;
+        localStorage.setItem("_user.userName", userName);
+        localStorage.setItem("_user.followers", followers);
+        localStorage.setItem("_user.following", following);
+        localStorage.setItem("_user.avatarUrl", avatarUrl);
+        localStorage.setItem("_user.publicRepos", publicRepos);
+        localStorage.setItem("_user.publicGists", publicRepos);
+        localStorage.setItem("_user.htmlUrl", htmlUrl);
+      } else if(localStorage.getItem("_user.userName")){
+        authorized = true;
+        userName = localStorage.getItem("_user.userName");
+        followers = localStorage.getItem("_user.followers");
+        following = localStorage.getItem("_user.following");
+        avatarUrl = localStorage.getItem("_user.avatarUrl");
+        publicRepos = localStorage.getItem("_user.publicRepos");
+        publicGists = localStorage.getItem("_user.publicGists");
+        htmlUrl = localStorage.getItem("_user.htmlUrl");
+      }
+      let account = localStorage.getItem("_account_");
+      let chainId = localStorage.getItem("_chainId_") || 80001;
+      let walletButtonText = 'Connect Wallet';
+      if(account){
+        walletButtonText = account.substr(0,4) + '...' + account.substr(account.length - 4);
+      }
+
+      console.log("account:" +account);
+
+      window.vm = new Vue({
+        el: '#vm',
+        data: {
+          account: account,
+          chainId: chainId,
+          proposal: 0,
+          walletButtonText: walletButtonText,
+          userName : userName,
+          followers: followers,
+          following: following,
+          avatarUrl: avatarUrl,
+          authorized : authorized,
+          publicGists: publicGists,
+          publicRepos: publicRepos,
+          htmlUrl:htmlUrl
+        },
+        computed: {
+          ready: function () {
+            return this.account && this.chainId == 80001;
+          },
+          wrongNetwork: function () {
+            return this.account && this.chainId != 80001;
+          }
+        },
+        methods: {
+          accountChanged: function (accounts) {
+            console.log('wallet account changed:', accounts.length === 0 ? null : accounts[0]);
+            if (accounts.length === 0) {
+              this.disconnected();
+            } else {
+              this.account = accounts[0];
+              this.walletButtonText = accounts[0].substr(0,4) + '...' + accounts[0].substr(accounts[0].length - 4);
+              localStorage.setItem("_account_", accounts[0]);
+              //document.cookie = '__account__=' + this.account + ';max-age=1296000';
+            }
+          },
+          disconnected: async function () {
+            console.warn('wallet disconnected.');
+            this.walletButtonText = "Connect Wallet";
+            this.chainId = 0;
+            localStorage.setItem("_account_",'');
+            this.account = null;
+          },
+          chainChanged: function (chainId) {
+            console.log('wallet chainId changed: ' + chainId + ' = ' + parseInt(chainId, 16));
+            this.chainId = parseInt(chainId, 16);
+            localStorage.setItem("_chainId_", this.chainId);
+          },
+          connectWallet: async function () {
+            console.log('try connect wallet...');
+            if (window.getWeb3Provider() === null) {
+              console.error('there is no web3 provider.');
+              return false;
+            }
+            try {
+              this.accountChanged(await window.ethereum.request({
+                method: 'eth_requestAccounts',
+              }));
+              this.chainChanged(await window.ethereum.request({
+                method: 'eth_chainId'
+              }));
+              window.ethereum.on('disconnect', this.disconnected);
+              window.ethereum.on('accountsChanged', this.accountChanged);
+              window.ethereum.on('chainChanged', this.chainChanged);
+            } catch (e) {
+              console.error('could not get a wallet connection.', e);
+              return false;
+            }
+            console.log('wallet connected.');
+            return true;
+          },
+          signText: async function(){
+            let accessToken = getLatestAccessToken();
+            console.log("getLatestAccessToken", accessToken);
+          }
+        }
+      });
+    }
+  </script>
+</head>
+
+<body>
+
+  {% include "modals.html" %}
+
+  <div id="vm">
+
+    {% include "nav.html" %}
+
+    <div class="container-xxl ">
+      <div class="row">
+
+        <div class="col-12 mt-4">
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="home">
+
+              <div class="row">
+                <div class="col-6">
+                  <image class="img-fluid" src="/public/images/logo.jpg" style="max-width: 80%;margin-bottom: 40px;"/>
+                  <h2>What is Resum3 ? </h2>
+                  <p>Web3 Resume is a web3 resume of its own. You can build your own resume,  show your github contributions and find another things. </p>
+
+                  <p>In Web2, recruiting often relies on sites like Linkedin, while the same job search/recruitment is needed in the Web3 world. In the web3 world, building a resume of your own requires both up-chain data and down-chain data (real-world data) to work together. For example, as a developer looking for a job, you need to show your Github (pr/mr/cr, repo list, commit history , star/fork counts), Gitcoin.co ( hackthon history), Mirror.xyz (article history) and so on, and we'll do ratings and sorting for these projects.</p>
+
+                  <h2>Tourials </h2>
+                  <ul>
+                    <li>Connect your wallet.</li>
+                    <li>Authorize by Github.</li>
+                    <li>Create your profile.</li>
+                    <li>Make some changes for your profile.</li>
+                    <li>View others profile and chat with them.</li>
+                  </ul>
+                </div>
+
+                <div class="col-1"></div>
+                <div class="col-5">
+                  <div v-if="authorized">
+                    <h2><i class="bi-github" width="24" height="24" role="img" aria-label="GitHub"></i>&nbsp;&nbsp;Github Authoration Info</h2>
+
+                    <image :src="avatarUrl" style="height: 200px;width: 200px;"></image>
+                    <p></p>
+
+                    <div class="mb-3 row">
+                      <label for="githubUrlSpan2" class="col-sm-4 col-form-label">Github Url</label>
+                      <div class="col-sm-8">
+                        <a type="text" target="_blank" v-bind:href="htmlUrl" v-text="htmlUrl" class="form-control-plaintext" id="githubUrlSpan2" ></a>
+                      </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                      <label for="publicReposSpan2" class="col-sm-4 col-form-label">Github Repositories</label>
+                      <div class="col-sm-8">
+                        <span type="text" v-text="publicRepos" class="form-control-plaintext" id="publicReposSpan2" ></span>
+                      </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                      <label for="publicGistsSpan2" class="col-sm-4 col-form-label">Github Gists</label>
+                      <div class="col-sm-8">
+                        <span type="text" v-text="publicGists" class="form-control-plaintext" id="publicGistsSpan2" ></span>
+                      </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                      <label for="followersSpan2" class="col-sm-4 col-form-label">Github Followers</label>
+                      <div class="col-sm-8">
+                        <span type="text"  v-text="followers" class="form-control-plaintext" id="followersSpan2" ></span>
+                      </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                      <label for="followingSpan2" class="col-sm-4 col-form-label">Github Following</label>
+                      <div class="col-sm-8">
+                        <span type="text" v-text="following" class="form-control-plaintext" id="followingSpan2" ></span>
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      &nbsp;&nbsp;<button v-bind:disabled="!authorized" onclick="createProfile()" class="btn btn-primary btn-lg col-6">Create Profile</button>
+                    </div>
+                  </div>
+
+                  <div v-if="!authorized">
+                    <h2>Please authorize github</h2>
+                    <button class="btn btn-primary btn-lg btn-block">
+                      <a class="nav-link" target="_blank" href='/github/login' style="color: white;width:250px;"><i class="bi-github" width="24" height="24" role="img" aria-label="GitHub"></i>&nbsp;Authorize github</a>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+
+              <div role="tabpanel" class="tab-pane" id="profiles">
+              </div>
+              <div role="tabpanel" class="tab-pane" id="allProfiles">
+                  <h2>All Profiles</h2>
+                  <h4>Loading...</h4>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="settings">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <!-- Buttons -->
+                    </div>
+                    <input type="text" class="form-control" aria-label="...">
+                  </div>
+              </div>
+            </div>
+
+        </div>
+        <div class="col-1">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

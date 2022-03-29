@@ -1,0 +1,328 @@
+{
+  "security": {
+    "csrf": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/config/config.default.js",
+      "type": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "ignoreJSON": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "useSession": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "cookieName": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "sessionName": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "headerName": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "bodyName": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "queryName": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "refererWhiteList": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "domainWhiteList": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+    "protocolWhiteList": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+    "defaultMiddleware": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+    "xframe": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "value": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "hsts": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.local.js",
+      "maxAge": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "includeSubdomains": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "dta": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "methodnoallow": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "noopen": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "nosniff": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "referrerPolicy": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "value": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "xssProtection": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "value": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "csp": {
+      "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "policy": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    },
+    "ssrf": {
+      "ipBlackList": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "ipExceptionList": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js",
+      "checkAddress": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+    }
+  },
+  "cors": {
+    "origin": "/Users/jiayin/smartcontract/resume-front/config/config.default.js",
+    "allowMethods": "/Users/jiayin/smartcontract/resume-front/config/config.default.js"
+  },
+  "keys": "/Users/jiayin/smartcontract/resume-front/config/config.default.js",
+  "middleware": "/Users/jiayin/smartcontract/resume-front/config/config.default.js",
+  "view": {
+    "defaultViewEngine": "/Users/jiayin/smartcontract/resume-front/config/config.default.js",
+    "mapping": {
+      ".html": "/Users/jiayin/smartcontract/resume-front/config/config.default.js"
+    },
+    "root": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-view/config/config.default.js",
+    "cache": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-view/config/config.local.js",
+    "defaultExtension": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-view/config/config.default.js"
+  },
+  "configPath": "/Users/jiayin/smartcontract/resume-front/config/config.default.js",
+  "session": {
+    "maxAge": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-session/config/config.default.js",
+    "key": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-session/config/config.default.js",
+    "httpOnly": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-session/config/config.default.js",
+    "encrypt": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-session/config/config.default.js",
+    "logValue": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-session/config/config.default.js"
+  },
+  "helper": {
+    "shtml": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-security/config/config.default.js"
+  },
+  "jsonp": {
+    "limit": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-jsonp/config/config.default.js",
+    "callback": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-jsonp/config/config.default.js",
+    "csrf": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-jsonp/config/config.default.js"
+  },
+  "onerror": {
+    "errorPageUrl": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-onerror/config/config.default.js",
+    "appErrorFilter": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-onerror/config/config.default.js",
+    "templatePath": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-onerror/config/config.default.js"
+  },
+  "i18n": {
+    "defaultLocale": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-i18n/config/config.default.js",
+    "dirs": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-i18n/config/config.default.js",
+    "queryField": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-i18n/config/config.default.js",
+    "cookieField": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-i18n/config/config.default.js",
+    "cookieDomain": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-i18n/config/config.default.js",
+    "cookieMaxAge": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-i18n/config/config.default.js"
+  },
+  "watcher": {
+    "type": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-watcher/config/config.local.js",
+    "eventSources": {
+      "default": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-watcher/config/config.default.js",
+      "development": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-watcher/config/config.default.js"
+    }
+  },
+  "customLogger": {
+    "scheduleLogger": {
+      "consoleLevel": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-schedule/config/config.default.js",
+      "file": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-schedule/config/config.default.js"
+    }
+  },
+  "schedule": {
+    "directory": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-schedule/config/config.default.js"
+  },
+  "multipart": {
+    "mode": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "autoFields": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "defaultCharset": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "fieldNameSize": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "fieldSize": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "fields": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "fileSize": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "files": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "fileExtensions": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "whitelist": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "allowArrayField": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "tmpdir": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+    "cleanSchedule": {
+      "cron": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js",
+      "disable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-multipart/config/config.default.js"
+    }
+  },
+  "development": {
+    "watchDirs": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-development/config/config.default.js",
+    "ignoreDirs": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-development/config/config.default.js",
+    "fastReady": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-development/config/config.default.js",
+    "reloadOnDebug": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-development/config/config.default.js",
+    "overrideDefault": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-development/config/config.default.js",
+    "overrideIgnore": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-development/config/config.default.js"
+  },
+  "logrotator": {
+    "filesRotateByHour": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-logrotator/config/config.default.js",
+    "hourDelimiter": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-logrotator/config/config.default.js",
+    "filesRotateBySize": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-logrotator/config/config.default.js",
+    "maxFileSize": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-logrotator/config/config.default.js",
+    "maxFiles": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-logrotator/config/config.default.js",
+    "rotateDuration": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-logrotator/config/config.default.js",
+    "maxDays": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-logrotator/config/config.default.js"
+  },
+  "static": {
+    "prefix": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-static/config/config.default.js",
+    "dir": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-static/config/config.default.js",
+    "dynamic": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-static/config/config.default.js",
+    "preload": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-static/config/config.default.js",
+    "buffer": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-static/config/config.default.js",
+    "maxFiles": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-static/config/config.default.js"
+  },
+  "nunjucks": {
+    "autoescape": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-view-nunjucks/config/config.default.js",
+    "throwOnUndefined": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-view-nunjucks/config/config.default.js",
+    "trimBlocks": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-view-nunjucks/config/config.default.js",
+    "lstripBlocks": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-view-nunjucks/config/config.default.js",
+    "cache": "/Users/jiayin/smartcontract/resume-front/node_modules/egg-view-nunjucks/config/config.local.js"
+  },
+  "env": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "name": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "cookies": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "proxy": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "maxIpsCount": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "maxProxyCount": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "protocolHeaders": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "ipHeaders": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "hostHeaders": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "pkg": {
+    "name": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "version": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "description": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "private": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "egg": {
+      "declarations": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "dependencies": {
+      "apollo-boost": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "apollo-cache-inmemory": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "apollo-link-http": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "bip39": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "chia-client": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "cross-fetch": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "crypto-js": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "egg": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "egg-scripts": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "egg-view-nunjucks": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "ethereumjs-util": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "ethereumjs-wallet": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "graphql": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "graphql-tag": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "js-conflux-sdk": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "react-apollo": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "devDependencies": {
+      "autod": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "autod-egg": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "egg-bin": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "egg-ci": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "egg-mock": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "eslint": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "eslint-config-egg": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "engines": {
+      "node": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "scripts": {
+      "start": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "stop": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "dev": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "prod": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "debug": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "test": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "test-local": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "cov": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "lint": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "ci": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "autod": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "ci": {
+      "version": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "repository": {
+      "type": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "url": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "author": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "license": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+  },
+  "baseDir": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "HOME": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "rundir": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "dump": {
+    "ignore": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+  },
+  "confusedConfigurations": {
+    "bodyparser": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "notFound": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "sitefile": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "middlewares": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "httpClient": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+  },
+  "notfound": {
+    "pageUrl": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+  },
+  "siteFile": {
+    "/favicon.ico": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+  },
+  "bodyParser": {
+    "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "encoding": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "formLimit": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "jsonLimit": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "textLimit": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "strict": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "queryString": {
+      "arrayLimit": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "depth": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "parameterLimit": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "onerror": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+  },
+  "logger": {
+    "dir": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "encoding": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "env": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "level": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "consoleLevel": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "disableConsoleAfterReady": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "outputJSON": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "buffer": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "appLogName": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "coreLogName": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "agentLogName": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "errorLogName": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "coreLogger": {
+      "consoleLevel": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.local.js"
+    },
+    "allowDebugAtProd": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "enablePerformanceTimer": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+  },
+  "httpclient": {
+    "enableDNSCache": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "dnsCacheLookupInterval": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "dnsCacheMaxLength": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "request": {
+      "timeout": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "httpAgent": {
+      "keepAlive": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "freeSocketTimeout": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "maxSockets": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "maxFreeSockets": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    },
+    "httpsAgent": {
+      "keepAlive": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "freeSocketTimeout": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "maxSockets": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "maxFreeSockets": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    }
+  },
+  "meta": {
+    "enable": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "logging": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+  },
+  "coreMiddleware": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "workerStartTimeout": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "serverTimeout": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+  "cluster": {
+    "listen": {
+      "path": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "port": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+      "hostname": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+    }
+  },
+  "clusterClient": {
+    "maxWaitTime": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js",
+    "responseTimeout": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+  },
+  "onClientError": "/Users/jiayin/smartcontract/resume-front/node_modules/egg/config/config.default.js"
+}

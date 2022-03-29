@@ -1,0 +1,87 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;Resum3</a>
+
+<!--    <div class="collapse navbar-collapse" v-if="authorized">-->
+<!--        <ul class="navbar-nav">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href='#' v-text="userName" style="color: white">wss</a>-->
+<!--                &lt;!&ndash; <image src="https://picsum.photos/id/1005/600/200"></image> &ndash;&gt;-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+    <div class="collapse navbar-collapse" v-if="!authorized">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" href='/github/login' style="color: white;width:200px;"><i class="bi-github" width="24" height="24" role="img" aria-label="GitHub"></i>&nbsp;Authorize github</a>
+                <!-- <image src="https://picsum.photos/id/1005/600/200"></image> -->
+            </li>
+        </ul>
+    </div>
+
+    <div class="container-fluid">
+        <ul class="nav navbar-nav me-auto mb-2 mb-lg-0" id="myTabs" class="nav nav-pills nav-fill" role="tablist">
+<!--            <li class="nav-item" v-if="authorized">-->
+<!--                <a class="nav-link" href='#' v-text="userName" style="color: white">wss</a>-->
+
+<!--                &lt;!&ndash; <image src="https://picsum.photos/id/1005/600/200"></image> &ndash;&gt;-->
+<!--            </li>-->
+
+            <li class="nav-item dropdown" v-if="authorized">
+                <a class="nav-link dropdown-toggle" style="color: white" v-text="userName" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" onclick="logoutGithub()" href="#">Log out</a></li>
+                </ul>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#profiles" onclick="getUserProfiles()">My Resumes</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#allProfiles" onclick="getAllProfiles()">All Profiles</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <ul id="wallet" class="mr-2 navbar-nav navbar-right-wrap" style="flex-direction: row !important;">
+        <li>
+            <button v-on:click="connectWallet" type="button" class="btn btn-block btn-primary"  style="width: 200px;color: white;border-color:white;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-wallet" viewBox="0 0 18 18">
+                    <path d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z"></path>
+                </svg>
+                <span v-text="walletButtonText">Connect Your Wallet</span>
+            </button>
+        </li>
+        <!--
+                      <li  class="ms-2 d-inline-block">
+                        <button onclick="getLatestAccessToken()" type="button" class="btn btn-primary" style="color: white;border-color:white;">
+                          signText</button>
+                      </li> -->
+        <!--          <li  class="ms-2 d-inline-block">-->
+        <!--            <button v-on:click="contractSetName()" type="button" class="btn btn-primary" style="color: white;border-color:white;">-->
+        <!--              contractSetName</button>-->
+        <!--          </li>-->
+
+        <!--          <li  class="ms-2 d-inline-block">-->
+        <!--            <button v-on:click="contractSetTags" type="button" class="btn btn-primary" style="color: white;border-color:white;">-->
+        <!--              contractSetTags</button>-->
+        <!--          </li>-->
+
+        <!--          <li  class="ms-2 d-inline-block">-->
+        <!--            <button v-on:click="contractQueryTags" type="button" class="btn btn-primary" style="color: white;border-color:white;">-->
+        <!--              contractQueryTags</button>-->
+        <!--          </li>-->
+
+        <li v-if="wrongNetwork" class="ms-2 d-inline-block">
+            <span class="nav-link">Please switch to Mumbai network</span>
+        </li>
+    </ul>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+</nav>

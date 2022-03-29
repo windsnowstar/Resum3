@@ -1,0 +1,368 @@
+<h2>My Resumes</h2>
+<script type="text/javascript">
+  
+   async function updateProfile(profileId){
+
+      if(!profileId){
+        profileId = $("#detailProfileId").val();
+      }
+      $('#profileIdInput').val(profileId);
+      
+      let m = $('#updateProfileModel');
+      m.find('.x-title').text('Update Resume Name');
+      //let myModal = new bootstrap.Modal(m.get(0), { backdrop: 'static' })
+
+      $('#updateProfileModel').modal('show')
+      console.log("profileId", profileId);
+   }
+
+   async function doUpdateName(){
+     let profileId = $('#profileIdInput').val();
+     let profileName = $('#nameInput').val();
+     console.log(`updateProfile, ${profileId}, ${profileName}`);
+
+     let loading = showLoading('Processing', 'Prepare for contract...');
+     try {
+       loading.setMessage('Please confirm transaction in wallet...');
+       let contract = new ethers.Contract(CONTRACT_ADDR, ABI, window.getWeb3Provider().getSigner());
+       let tx = await contract.setName(parseInt(profileId), profileName);
+       loading.setMessage('Please wait for blockchain...');
+       await tx.wait(1);
+       showInfo('Success', 'You have successfully done!');
+     } catch (e) {
+       showAlert('Error', translateError(e));
+     }
+     loading.close();
+      // $.ajax({
+      //   url: `/updateProfile`,
+      //   data:{
+      //     profileId:profileId,
+      //     accessToken:accessToken,
+      //     name: profileName,
+      //     bio: bio,
+      //     twitterUrl :twitterUrl,
+      //     website: website
+      //   },
+      //   type:"POST",
+      //   success: function(data){
+      //     console.log("updateProfile result:" , data)
+      //     showInfo('Success', 'Update your profile success');
+      //   },
+      //   error: function(error){
+      //     alert(error);
+      //   }
+      // });
+
+   }
+
+   async function updateProfileTags(profileId){
+     if(!profileId){
+       profileId = $("#detailProfileId").val();
+     }
+     $('#profileIdTagInput').val(profileId);
+     let m = $('#updateProfileTagModel');
+     m.find('.x-title').text('Update Resume Tags');
+
+     let followers = localStorage.getItem("_user.followers");
+     let following = localStorage.getItem("_user.following");
+     let avatarUrl = localStorage.getItem("_user.avatarUrl");
+     let publicRepos = localStorage.getItem("_user.publicRepos");
+     let publicGists = localStorage.getItem("_user.publicGists");
+     let htmlUrl =  localStorage.getItem("_user.htmlUrl");
+
+     $('#followersInput').val(followers);
+     $('#followingInput').val(following);
+     $('#publicReposInput').val(publicRepos);
+     $('#publicGistsInput').val(publicGists);
+     $('#githubUrlInput').val(htmlUrl);
+
+     $('#updateProfileTagModel').modal('show')
+
+   }
+
+   async function doUpdateTags(){
+     //let address = localStorage.getItem("_account_");
+     //let accessToken = await getLatestAccessToken();
+     let profileId = $('#profileIdTagInput').val();
+     let twitterUrl = $('#twitterUrlInput').val();
+
+     let followers = localStorage.getItem("_user.followers");
+     let following = localStorage.getItem("_user.following");
+     let avatarUrl = localStorage.getItem("_user.avatarUrl");
+     let publicRepos = localStorage.getItem("_user.publicRepos");
+     let publicGists = localStorage.getItem("_user.publicGists");
+     let htmlUrl =  localStorage.getItem("_user.htmlUrl");
+     let loading = showLoading('Processing', 'Prepare for contract...');
+     try {
+       loading.setMessage('Please confirm transaction in wallet...');
+       let contract = new ethers.Contract(CONTRACT_ADDR, ABI, window.getWeb3Provider().getSigner());
+       let tags ={
+         "socialUri": twitterUrl,
+         "githubUri": htmlUrl,
+         "contributions": 0,
+         "repositories": parseInt(publicRepos),
+         "gists": parseInt(publicGists),
+         "followers": parseInt(followers),
+         "following": parseInt(following)
+       }
+       console.log("tags:", tags);
+       let tx = await contract.setTags(parseInt(profileId),tags);
+       loading.setMessage('Please wait for blockchain...');
+       await tx.wait(1);
+       showInfo('Success', 'You have successfully done!');
+     } catch (e) {
+       showAlert('Error', translateError(e));
+     }
+     loading.close();
+   }
+
+
+   async function showResumeDetail(profileId){
+     $("#detailProfileId").val(profileId);
+     let m = $('#resumeDetailModel');
+     m.find('.x-title').text('My Resume');
+     let loading = showLoading('Processing', 'Prepare for your resume...');
+     let tags = [];
+     let name = "";
+     try {
+       let contract = new ethers.Contract(CONTRACT_ADDR, ABI, window.getWeb3Provider().getSigner());
+       let tags = await contract.Tags(parseInt(profileId));
+       let name = await contract.Name(parseInt(profileId));
+       let avatarUrl = localStorage.getItem("_user.avatarUrl");
+       $("#resumeDetailImage").attr("src", avatarUrl);
+
+       if(name){
+         $("#nameSpan").val(name);
+       }else{
+         $("#nameSpan").val("not set");
+       }
+
+       if(tags[1]){
+         $("#socialUrlSpan").val(tags[0]);
+         $("#githubUrlSpan").val(tags[1]);
+         $("#publicReposSpan").val(tags[3]);
+         $("#publicGistsSpan").val(tags[4]);
+         $("#followersSpan").val(tags[5]);
+         $("#followingSpan").val(tags[6]);
+       }else{
+         $("#socialUrlSpan").val("not set");
+         $("#githubUrlSpan").val("not set");
+         $("#publicReposSpan").val("not set");
+         $("#publicGistsSpan").val("not set");
+         $("#followersSpan").val("not set");
+         $("#followingSpan").val("not set");
+       }
+       //console.log("tags and name", JSON.stringify(tags), name);
+       loading.close();
+       $('#resumeDetailModel').modal('show');
+     } catch (e) {
+       showAlert('Error', translateError(e));
+     }
+   }
+
+</script>
+
+
+
+  <!-- profile Modal -->
+
+<div id="updateProfileModel" class="modal fade" role="dialog" aria-hidden="true" aria-labelledby="updateProfileModel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header align-items-center d-flex">
+          <h4 class="modal-title x-title" >&nbsp;</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="fe fe-x-circle"></i></span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" name="profileId" id="profileIdInput">
+
+          <div class="mb-3">
+            <label for="nameInput" class="form-label">Resume Name</label>
+            <input type="text" class="form-control" id="nameInput" placeholder="your resume name">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-outline-primary" data-bs-dismiss="modal" aria-label="Close" id="updateButton" onclick="doUpdateName();">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div id="updateProfileTagModel" class="modal fade" role="dialog" aria-hidden="true" aria-labelledby="updateProfileTagModel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header align-items-center d-flex">
+        <h4 class="modal-title x-title" >&nbsp;</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fe fe-x-circle"></i></span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" name="profileId" id="profileIdTagInput">
+
+        <div class="mb-3">
+          <label for="twitterUrlInput" class="form-label">Social Url</label>
+          <input type="text" class="form-control" id="twitterUrlInput" placeholder="your social url">
+        </div>
+
+        <div class="mb-3">
+          <label for="githubUrlInput" class="form-label">Github url</label>
+          <input type="text" class="form-control" id="githubUrlInput" disabled readonly >
+        </div>
+
+        <div class="mb-3">
+          <label for="followersInput" class="form-label">Github Followers</label>
+          <input type="text" class="form-control" id="followersInput" disabled readonly >
+        </div>
+
+        <div class="mb-3">
+          <label for="followingInput" class="form-label">Github Following</label>
+          <input type="text" class="form-control" id="followingInput" disabled readonly >
+        </div>
+
+        <div class="mb-3">
+          <label for="publicReposInput" class="form-label">Github Repositories</label>
+          <input type="text" class="form-control" id="publicReposInput" disabled readonly >
+        </div>
+
+        <div class="mb-3">
+          <label for="publicGistsInput" class="form-label">Github Gists</label>
+          <input type="text" class="form-control" id="publicGistsInput" disabled readonly >
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline-primary" data-bs-dismiss="modal" aria-label="Close" onclick="doUpdateTags();">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="resumeDetailModel" class="modal fade" role="dialog" aria-hidden="true" aria-labelledby="resumeDetailModel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header align-items-center d-flex">
+        <h4 class="modal-title x-title" >&nbsp;</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fe fe-x-circle"></i></span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <image id="resumeDetailImage" class="img-fluid" src="/public/images/logo.jpg" style="max-width: 30%"/>
+        <p></p>
+
+        <input type="hidden" id="detailProfileId">
+        <div class="mb-3 row">
+          <label for="nameSpan" class="col-sm-3 col-form-label">Name</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="nameSpan" >
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="socialUrlSpan" class="col-sm-3 col-form-label">Social Url</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="socialUrlSpan" >
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="githubUrlSpan" class="col-sm-3 col-form-label">Github</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="githubUrlSpan" >
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="publicReposSpan" class="col-sm-3 col-form-label">Github Repositories</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="publicReposSpan" >
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="publicGistsSpan" class="col-sm-3 col-form-label">Github Gists</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="publicGistsSpan" >
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="followersSpan" class="col-sm-3 col-form-label">Github Followers</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="followersSpan" >
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="followingSpan" class="col-sm-3 col-form-label">Github Following</label>
+          <div class="col-sm-9">
+            <input type="text" readonly class="form-control-plaintext" id="followingSpan" >
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline-primary" data-bs-dismiss="modal" onclick="updateProfile()" aria-label="Close" id="editNameButton">Edit Resume Name</button>
+        <button class="btn btn-outline-primary" data-bs-dismiss="modal" onclick="updateProfileTags()" aria-label="Close" id="editTagsButton">Edit Resume Tags</button>
+        <button class="btn btn-outline-primary" data-bs-dismiss="modal" aria-label="Close">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if profiles.items.length > 0 %}
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Handle</th>
+    <th scope="col">TotalFollowers</th>
+    <th scope="col">TotalFollowing</th>
+    <th scope="col">TotalPosts</th>
+    <th scope="col">TotalMirrors</th>
+    <th scope="col">TotalPublications</th>
+    <th scope="col">Operation</th>
+  </tr>
+  </thead>
+
+  <tbody>
+
+  {% for item in profiles.items %}
+  <tr>
+    <th scope="row">{{ item.id }}</th>
+    <td>{{ item.handle }}</td>
+    <td>{{ item.stats.totalFollowers }}</td>
+    <td>{{ item.stats.totalFollowing }}</td>
+    <td>{{ item.stats.totalPosts }}</td>
+    <td>{{ item.stats.totalMirrors }}</td>
+    <td>{{ item.stats.totalPublications }}</td>
+    <td>
+      <button class="btn btm-sm btn-outline-primary" onclick="updateProfile('{{item.id}}')"><i class="bi bi-pencil-square" role="img" aria-label="Update Resume Name"></i></button>&nbsp;
+      <button class="btn btm-sm btn-outline-primary" onclick="updateProfileTags('{{item.id}}')"><i class="bi bi-card-text" role="img" aria-label="Update Resume Tags"></i></button>&nbsp;
+      <button class="btn btm-sm btn-outline-primary" onclick="showResumeDetail('{{item.id}}')"><i class="bi bi-info-square" role="img" aria-label="Show Resume Detail"></i></button>
+    </td>
+  </tr>
+  {% endfor %}
+
+  </tbody>
+
+</table>
+{% else %}
+<h4>Your profile list is Empty, Please create one. </h4>
+<p></p>
+<button onclick="createProfile()" class="btn btn-outline-primary btn-lg btn-block">Create Profile</button>
+{% endif %}
+
+
